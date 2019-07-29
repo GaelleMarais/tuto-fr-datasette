@@ -43,6 +43,15 @@ Pour lancer le serveur web, on utilise :
 $ datasette nom_de_la_base_de_données
 ```
 L'API est consultable à l'adresse https://localhost:8001
+Un petit aperçu du résultat :
+![Capture d’écran de 2019-07-29 07-48-24](https://user-images.githubusercontent.com/14167172/62035543-5baf6700-b1f0-11e9-81e1-714dbea7dcde.png)
+
+![Capture d’écran de 2019-07-29 07-48-38](https://user-images.githubusercontent.com/14167172/62035546-5d792a80-b1f0-11e9-9c78-4bf5708dd84c.png)
+
+![Capture d’écran de 2019-07-29 07-48-43](https://user-images.githubusercontent.com/14167172/62035549-5f42ee00-b1f0-11e9-9184-4e31c1bf5698.png)
+
+![Capture d’écran de 2019-07-29 07-49-09](https://user-images.githubusercontent.com/14167172/62035560-60741b00-b1f0-11e9-9420-ddb7b2898e3b.png)
+
 
 
 ### Licence
