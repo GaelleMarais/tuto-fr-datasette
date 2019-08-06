@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% include "header.html" %}
+
+{% block title %}{{ database }}: {{ table }}{% endblock %}
+
+{% block extra_head %}
+{{ super() }}
+
+<style>
+@media only screen and (max-width: 576px) {
+{% for column in columns %}
+    .rows-and-columns td:nth-of-type({{ loop.index }}):before { content: "{{ column|escape_css_string }}"; }
+{% endfor %}
+}
+</style>
+{% endblock %}
+
+{% block nav %}
+    <p class="crumbs">
+        <a href="/">home</a> /
+        <a href="{{ database_url(database) }}">{{ database }}</a> /
+        <a href="{{ database_url(database) }}/{{ table|quote_plus }}">{{ table }}</a>
+    </p>
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+<section class="section-grey">
+  <div class="container">
+    <br/><br/>
+    <h1  }}">{{ table }}: {{ ', '.join(primary_key_values) }}</a></h1>
+
+    <div class="panel"
+
+    {% block description_source_license %}{% include "_description_source_license.html" %}{% endblock %}
+
+    <p>Ces données au format {% for name, url in renderers.items() %}<a href="{{ url }}">{{ name }}</a>{{ ", " if not loop.last }}{% endfor %}</p>
+
+    {% include custom_table_templates %}
+
+    {% if foreign_key_tables %}
+        <h2>Links from other tables</h2>
+        <ul>
+            {% for other in foreign_key_tables %}
+                <li>
+                    <a href="{{ database_url(database) }}/{{ other.other_table|quote_plus }}?{{ other.other_column }}={{ ', '.join(primary_key_values) }}">
+                        {{ "{:,}".format(other.count) }} row{% if other.count == 1 %}{% else %}s{% endif %}</a>
+                    from {{ other.other_column }} in {{ other.other_table }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <br/><br/>
+  </div>
+</section>
+
+{% endblock %}

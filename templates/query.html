@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% include "header.html" %}
+
+{% block title %}{{ database }}{% if query and query.sql %}: {{ query.sql }}{% endif %}{% endblock %}
+
+{% block extra_head %}
+{{ super() }}
+{% if columns %}
+<style>
+@media only screen and (max-width: 576px) {
+{% for column in columns %}
+    .rows-and-columns td:nth-of-type({{ loop.index }}):before { content: "{{ column|escape_css_string }}"; }
+{% endfor %}
+}
+</style>
+{% endif %}
+{% include "_codemirror.html" %}
+{% endblock %}
+
+
+{% block nav %}
+    <p class="crumbs">
+        <a href="/">home</a> /
+        <a href="{{ database_url(database) }}">{{ database }}</a>
+    </p>
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+<section class="section section-grey">
+  <div class="container">
+
+    <form class="sql" action="{{ database_url(database) }}{% if canned_query %}/{{ canned_query }}{% endif %}" method="get">
+        <h3>Requête SQL{% if display_rows %} retournant {% if truncated %}plus de {% endif %}{{ "{:,}".format(display_rows|length) }} ligne{% if display_rows|length == 1 %}{% else %}s{% endif %}{% endif %} <span class="show-hide-sql">{% if hide_sql %}(<a href="{{ path_with_removed_args(request, {'_hide_sql': '1'}) }}">show</a>){% else %}(<a href="{{ path_with_added_args(request, {'_hide_sql': '1'}) }}">hide</a>){% endif %}</span></h3>
+        {% if not hide_sql %}
+            {% if editable and config.allow_sql %}
+                <p><textarea id="sql-editor" name="sql">{% if query and query.sql %}{{ query.sql }}{% else %}select * from {{ tables[0].name|escape_sqlite }}{% endif %}</textarea></p>
+            {% else %}
+                <pre>{% if query %}{{ query.sql }}{% endif %}</pre>
+            {% endif %}
+        {% else %}
+            <input type="hidden" name="sql" value="{% if query and query.sql %}{{ query.sql }}{% else %}select * from {{ tables[0].name|escape_sqlite }}{% endif %}">
+            <input type="hidden" name="_hide_sql" value="1">
+        {% endif %}
+        {% if named_parameter_values %}
+            <h3>Query parameters</h3>
+            {% for name, value in named_parameter_values.items() %}
+                <p><label for="qp{{ loop.index }}">{{ name }}</label> <input type="text" id="qp{{ loop.index }}" name="{{ name }}" value="{{ value }}"></p>
+            {% endfor %}
+        {% endif %}
+        <p><input type="submit" value="Run SQL"></p>
+    </form>
+
+    {% if display_rows %}
+    <div class="panel">
+        <p class="export-links">Afficher ces données au format {% for name, url in renderers.items() %}<a href="{{ url }}">{{ name }}</a>{{ ", " if not loop.last }}{% endfor %}, <a href="{{ url_csv }}">CSV</a></p>
+      <table class="table">
+          <thead>
+              <tr>
+                  {% for column in columns %}<th class="col-{{ column|to_css_class }}" scope="col">{{ column }}</th>{% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+          {% for row in display_rows %}
+              <tr>
+                  {% for column, td in zip(columns, row) %}
+                      <td class="col-{{ column|to_css_class }}">{% if td == None %}{{ "&nbsp;"|safe }}{% else %}{{ td }}{% endif %}</td>
+                  {% endfor %}
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+      </div>
+      {% endif %}
+
+    </div>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}

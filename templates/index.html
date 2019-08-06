@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "header.html" %}
+
+<div class="hero" role="banner">
+  <div class="hero__container">
+    <h1>{{ metadata.title or "Datasette" }}</h1>
+    <h2>{{ metadata.description }}</h2>
+  </div>
+</div>
+
+<section class= "section section-grey modals" >
+  <div class="container">
+      <h1>Bases de données </h1>
+      {% for database in databases %}
+      <div class= "panel" >
+        <h3><a href="{{ database.path }}">{{ database.name }}</a></h3>
+        <p>{{ database.description }}</p>
+        {% if database.show_table_row_counts %}{{ "{:,}".format(database.table_rows_sum) }} rows in {% endif %}{{ database.tables_count }} table{% if database.tables_count != 1 %}s{% endif %}{% if database.tables_count and database.hidden_tables_count %}, {% endif -%}
+        {% if database.hidden_tables_count -%}
+            {% if database.show_table_row_counts %}{{ "{:,}".format(database.hidden_table_rows_sum) }} rows in {% endif %}{{ database.hidden_tables_count }} hidden table{% if database.hidden_tables_count != 1 %}s{% endif -%}
+        {% endif -%}
+        {% if database.views_count -%}
+            {% if database.tables_count or database.hidden_tables_count %}, {% endif -%}
+            {{ "{:,}".format(database.views_count) }} view{% if database.views_count != 1 %}s{% endif %}
+        {% endif %}
+      </div>
+      {% endfor %}
+  </div>
+</section>
+
+
+{% include "footer.html" %}
+
+{% endblock %}

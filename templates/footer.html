@@ -1,0 +1,46 @@
+<div class="notification full-width">
+  {% if query_ms %}Query took {{ query_ms|round(3) }}ms{% endif %}
+  {% if metadata.license or metadata.license_url or metadata.source or metadata.source_url %}
+      <p>
+      {% if metadata.license or metadata.license_url %}License:
+          {% if metadata.license_url %}
+              <a href="{{ metadata.license_url }}">{{ metadata.license or metadata.license_url }}</a>
+          {% else %}
+              {{ metadata.license }}
+          {% endif %}
+      {% endif %}
+      {% if metadata.source or metadata.source_url %}{% if metadata.license or metadata.license_url %}&middot;{% endif %}
+          Source des données: {% if metadata.source_url %}
+              <a href="{{ metadata.source_url }}">
+          {% endif %}{{ metadata.source or metadata.source_url }}{% if metadata.source_url %}</a>{% endif %}
+      {% endif %}
+      {% if metadata.about or metadata.about_url %}{% if metadata.license or metadata.license_url or metadata.source or metadat.source_url %}&middot;{% endif %}
+          About: {% if metadata.about_url %}
+              <a href="{{ metadata.about_url }}">
+          {% endif %}{{ metadata.about or metadata.about_url }}{% if metadata.about_url %}</a>{% endif %}
+      {% endif %}
+      </p>
+  {% endif %}
+</div>
+
+
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__logo">
+      <img src="https://template.data.gouv.fr/images/etalab.svg" alt="Logo Etalab">
+      <ul class="footer__social">
+        <li><a href="https://twitter.com/etalab" title="Twitter"><svg class="icon icon-twitter"><use xlink:href="#twitter"></use></svg></a></li>
+        <li><a href="https://github.com/etalab" title="Github"><svg class="icon icon-github"><use xlink:href="#github"></use></svg></a></li>
+        <li><a href="https://www.facebook.com/etalab" title="Facebook"><svg class="icon icon-fb"><use xlink:href="#facebook"></use></svg></a></li>
+        <li><a href="mailto:info@data.gouv.fr" title="Nous écrire un mail"><svg class="icon icon-mail"><use xlink:href="#envelope"></use></svg></a></li>
+      </ul>
+    </div>
+    <ul class="footer__links">
+      <li><a href="https://www.data.gouv.fr/reference">Données de référence</a></li>
+      <li><a href="https://www.data.gouv.fr/terms">Conditions générales d'utilisation</a></li>
+      <li><a href="https://www.data.gouv.fr/api">API</a></li>
+    </ul>
+    <ul class="footer__links"></ul>
+  </div>
+</footer>
