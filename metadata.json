@@ -1,0 +1,8 @@
+{
+    "title": "Organisations data.gouv.fr",
+    "description": "Les données des organisations de data.gouv.fr reliées à Wikidata",
+    "license": "Licence ouverte 2.0",
+    "license_url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+    "source": "www.data.gouv.fr",
+    "source_url": "https://www.data.gouv.fr/fr/"
+}
