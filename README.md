@@ -10,10 +10,10 @@
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
 #### pip et pip3
-```
-$ sudo apt install python3-pip 
+`
+$ sudo apt install python3-pip
 $ sudo apt install python-pip
-```
+`
 #### Datasette
 Pour installer Datasette, on lance la commande :
 ```
@@ -52,7 +52,57 @@ Un petit aperçu du résultat :
 
 ![Capture d’écran de 2019-07-29 07-49-09](https://user-images.githubusercontent.com/14167172/62035560-60741b00-b1f0-11e9-9420-ddb7b2898e3b.png)
 
+### 4. Personnalisation
 
+Telles quelles, les pages webs affichant l'API ne sont pas très jolies. Heureusement, nous pouvons personnaliser cette interface grâce aux métadonnées et aux templates.
+A la racine du projet, on peut ajouter un fichier `metadata.json` qui permet de donner des informations supplémentaires pour l'API : un titre, une description, une licence, etc.
+
+Voici à quoi peut ressembler le fichier `metadata.json` :
+```JSON
+{
+    "title": "Organisations data.gouv.fr",
+    "description": "Les données des organisations de data.gouv.fr reliées à Wikidata",
+    "license": "Licence ouverte 2.0",
+    "license_url": "https://github.com/etalab/licence-ouverte/blob/master/LO.md",
+    "source": "www.data.gouv.fr",
+    "source_url": "https://www.data.gouv.fr/fr/"
+}
+```
+
+Plus d'informations sur la [documentation](https://datasette.readthedocs.io/en/stable/metadata.html).
+
+Afin d'utiliser les métadonnées au lancement du serveur, on utilise la commande :
+```
+$ datasette nom_de_la_base_de_données.db --metadata metadata.json
+```
+
+Afin de personnaliser l'apparence de l'interface web, on peut également ajouter des templates `.html` et des fichiers `.css`.
+Pour cela, on crée un répertoire `templates` et on y place nos templates. Les templates par défaut utilisées par datasette se trouve dans `/usr/local/lib/python3.6/dist-packages/datasette/templates`.
+Pour que nos templates remplacent les templates par défaut, il faut leur donner le nom adéquat :
+<ul>
+<li> index.html : Pour la page d'accueil</li>
+<li> database.html : Pour la page d'une base de données</li>
+<li> table.html : Pour la page d'une table de base de données</li>
+<li> row.html : Pour la page d'une ligne de la base de données </li>
+<li> query.html : Pour la page d'une table où l'on fait des requêtes SQL </li>
+</ul>
+
+[Voir la liste complète](https://datasette.readthedocs.io/en/stable/custom_templates.html) .
+Pour lancer le serveur en utilisant ces templates, on utilise la commande :
+```
+$ datasette nom_de_la_base_de_données.db --metadata metadata.json --template-dir templates/
+
+```
+
+En utilisant les templates crées à partir de https://template.data.gouv.fr on obtient cet affichage :
+
+![Capture d’écran de 2019-08-07 13-08-13](https://user-images.githubusercontent.com/14167172/62618536-c78e7f80-b914-11e9-909d-8a5f99dbe3d9.png)
+
+![Capture d’écran de 2019-08-07 13-08-28](https://user-images.githubusercontent.com/14167172/62618537-c78e7f80-b914-11e9-9e26-951808488037.png)
+
+![Capture d’écran de 2019-08-07 13-08-34](https://user-images.githubusercontent.com/14167172/62618538-c78e7f80-b914-11e9-9a2b-2e9a0c7159c0.png)
+
+![Capture d’écran de 2019-08-07 13-08-40](https://user-images.githubusercontent.com/14167172/62618540-c8271600-b914-11e9-8957-da00be0d8bc5.png)
 
 ### Licence
 
