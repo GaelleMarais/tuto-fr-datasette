@@ -36,14 +36,17 @@ On peut également utiliser des métacaractères ou des URLS :
 $ csvs-to-sqlite *.csv  nom-de-la-base-de-données.db
 $ csvs-to-sqlite https://exemple.fr/fichier1.csv  nom-de-la-base-de-données.db
 ```
+Pour notre exemple, nous utilisons [les données des organisations de data.gouv.fr reliées à Wikidata](https://www.data.gouv.fr/fr/datasets/organisations-de-data-gouv-fr-reliees-a-wikidata/).
 
 ### 3. Lancement du server
 Pour lancer le serveur web, on utilise :
 ```
 $ datasette nom_de_la_base_de_données
 ```
-L'API est consultable à l'adresse https://localhost:8001
+L'API est consultable à l'adresse https://localhost:8001.
+
 Un petit aperçu du résultat :
+
 ![Capture d’écran de 2019-07-29 07-48-24](https://user-images.githubusercontent.com/14167172/62035543-5baf6700-b1f0-11e9-81e1-714dbea7dcde.png)
 
 ![Capture d’écran de 2019-07-29 07-48-38](https://user-images.githubusercontent.com/14167172/62035546-5d792a80-b1f0-11e9-9c78-4bf5708dd84c.png)
@@ -88,6 +91,7 @@ Pour que nos templates remplacent les templates par défaut, il faut leur donner
 </ul>
 
 [Voir la liste complète](https://datasette.readthedocs.io/en/stable/custom_templates.html) .
+
 Pour lancer le serveur en utilisant ces templates, on utilise la commande :
 ```
 $ datasette nom_de_la_base_de_données.db --metadata metadata.json --template-dir templates/
