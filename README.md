@@ -4,9 +4,9 @@
 ### Datasette
 [Datasette](https://datasette.readthedocs.io) est un outil pour explorer et publier des données. Il permet de générer une API interactive à partir de données de toutes formes et de toutes tailles.
 
-[L'écosystème d'outils Datasette](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem)  permet, entre autre, de générer très facilement et rapidement une base données SQLite à partir de fichiers .csv, .json, ou bien à partir d'une autre base de données (MySQL, PostgreSQL, Oracle ...).
+[L'écosystème d'outils Datasette](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem)  permet, entres autres, de générer très facilement et rapidement une base de données SQLite à partir de fichiers .csv, .json, ou bien à partir d'une autre base de données (MySQL, PostgreSQL, Oracle ...).
 
-### 1. Installations pré-requises
+### 1. Installations prérequises
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
 #### pip et pip3
@@ -19,7 +19,7 @@ Pour installer Datasette, on lance la commande :
 ```
 $ sudo -H pip3 install --prefix /usr/local datasette
 ```
-Ensuite, on va installer l'outil qui nous permet de générer une base de données SQLite à partir de fichier csv  [`csvs-to-sqlite`](https://github.com/simonw/csvs-to-sqlite) :
+Ensuite, on va installer l'outil qui nous permet de générer une base de données SQLite à partir de fichiers csv  [`csvs-to-sqlite`](https://github.com/simonw/csvs-to-sqlite) :
 
 ```
 $ sudo -H pip install --prefix /usr/local csvs-to-sqlite
@@ -31,7 +31,7 @@ Pour créer la base de données à partir des fichiers csv, on lance simplement 
 ```
 $ csvs-to-sqlite fichier1.csv fichier2.csv nom-de-la-base-de-données.db
 ```
-On peut également utiliser des métacaractères ou des URLS :
+On peut également utiliser des métacaractères ou des URLs :
 ```
 $ csvs-to-sqlite *.csv  nom-de-la-base-de-données.db
 $ csvs-to-sqlite https://exemple.fr/fichier1.csv  nom-de-la-base-de-données.db
@@ -57,8 +57,8 @@ Un petit aperçu du résultat :
 
 ### 4. Personnalisation
 
-Telles quelles, les pages webs affichant l'API ne sont pas très jolies. Heureusement, nous pouvons personnaliser cette interface grâce aux métadonnées et aux templates.
-A la racine du projet, on peut ajouter un fichier `metadata.json` qui permet de donner des informations supplémentaires pour l'API : un titre, une description, une licence, etc.
+Telles quelles, les pages web affichant l'API ne sont pas très jolies. Heureusement, nous pouvons personnaliser cette interface grâce aux métadonnées et aux templates.
+À la racine du projet, on peut ajouter un fichier `metadata.json` qui permet de donner des informations supplémentaires pour l'API : un titre, une description, une licence, etc.
 
 Voici à quoi peut ressembler le fichier `metadata.json` :
 ```JSON
@@ -80,7 +80,7 @@ $ datasette nom_de_la_base_de_données.db --metadata metadata.json
 ```
 
 Afin de personnaliser l'apparence de l'interface web, on peut également ajouter des templates `.html` et des fichiers `.css`.
-Pour cela, on crée un répertoire `templates` et on y place nos templates. Les templates par défaut utilisées par datasette se trouve dans `/usr/local/lib/python3.6/dist-packages/datasette/templates`.
+Pour cela, on crée un répertoire `templates` et on y place nos templates. Les templates par défaut utilisées par datasette se trouvent dans `/usr/local/lib/python3.6/dist-packages/datasette/templates`.
 Pour que nos templates remplacent les templates par défaut, il faut leur donner le nom adéquat :
 <ul>
 <li> index.html : Pour la page d'accueil</li>
