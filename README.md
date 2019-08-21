@@ -10,10 +10,10 @@
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
 #### pip et pip3
-`
+```
 $ sudo apt install python3-pip
 $ sudo apt install python-pip
-`
+```
 #### Datasette
 Pour installer Datasette, on lance la commande :
 ```
@@ -41,9 +41,10 @@ Pour notre exemple, nous utilisons [les données des organisations de data.gouv.
 ### 3. Lancement du server
 Pour lancer le serveur web, on utilise :
 ```
-$ datasette nom_de_la_base_de_données
+$ datasette nom_de_la_base_de_données1 nom_de_la_base_de_données2 
 ```
 L'API est consultable à l'adresse https://localhost:8001.
+Remarque: Avec une seule instancde de Datasette, on peut servir plusieurs base de données différentes.
 
 Un petit aperçu du résultat :
 
