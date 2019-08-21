@@ -10,10 +10,10 @@
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
 #### pip et pip3
-`
+```
 $ sudo apt install python3-pip
 $ sudo apt install python-pip
-`
+```
 #### Datasette
 Pour installer Datasette, on lance la commande :
 ```
