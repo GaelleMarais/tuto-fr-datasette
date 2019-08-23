@@ -6,6 +6,8 @@
 
 [L'écosystème d'outils Datasette](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem)  permet, entres autres, de générer très facilement et rapidement une base de données SQLite à partir de fichiers .csv, .json, ou bien à partir d'une autre base de données (MySQL, PostgreSQL, Oracle ...).
 
+[Démo de l'API construite avec Datasette dans ce tutoriel.](http://demo-api-datasette.eig-forever.org)
+
 ### 1. Installations prérequises
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
