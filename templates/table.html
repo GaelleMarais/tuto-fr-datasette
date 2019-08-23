@@ -41,7 +41,7 @@
           {% endif %}
           {% for column, lookup, value in filters.selections() %}
                   <div class="form__group">
-                    <label for="filter_column"> Recherche par colonne :</label>
+                    <b> Recherche par colonne :</b>
                     <div class="input__group">
 
                       <select name="_filter_column_{{ loop.index }}" id="crit" style="margin-right:15px;">
@@ -64,8 +64,8 @@
           {% endfor %}
 
           <div class="form__group">
-                  <label for="filter_column"> Recherche par colonne :</label>
-                  <div class="input__group">
+                  <b> Recherche par colonne : </b>
+                  <div class="input__group" id="input_group" >
 
                     <select name="_filter_column" id="filter_column" style="margin-right:15px;">
                         <option value="" > </option>
@@ -86,7 +86,7 @@
             </div>
               {% if is_sortable %}
                   <div class="form__group">
-                      <label for="sort_by"> Trier par: </label>
+                       <b> Trier par: </b>
                       <select name="_sort" id="sort_by" style="width:100%;">
                           <option value="">Trier ...</option>
                           {% for column in display_columns %}
@@ -119,7 +119,7 @@
   <br/><br/>
 
   <div class="container">
-    <div class="panel">
+    <div class="panel" style="overflow: auto;">
 
     <h1>{{ metadata.title or table }}{% if is_view %} (view){% endif %}</h1>
 
@@ -193,28 +193,33 @@
     {% endif %}
 
     </div>
+  </div>
 
     {% if display_rows %}
-        <div id="export" class="advanced-export">
+        <div id="export" class="container">
+            <br/>
             <h5>Exporter</h5>
             <div class="panel">
-            JSON shape:
-                <a href="{{ renderers['json'] }}">default</a>,
-                <a href="{{ append_querystring(renderers['json'], '_shape=array') }}">array</a>,
-                <a href="{{ append_querystring(renderers['json'], '_shape=array&_nl=on') }}">newline-delimited</a>{% if primary_keys %},
-                    <a href="{{ append_querystring(renderers['json'], '_shape=object') }}">object</a>
+              <form action="" method="" >
+              format JSON:
+                  <a href="{{ renderers['json'] }}">default</a>,
+                  <a href="{{ append_querystring(renderers['json'], '_shape=array') }}">array</a>,
+                  <a href="{{ append_querystring(renderers['json'], '_shape=array&_nl=on') }}">newline-delimited</a>{% if primary_keys %},
+                      <a href="{{ append_querystring(renderers['json'], '_shape=object') }}">object</a>
+              </form>
                 {% endif %}
 
             <form action="{{ url_csv_path }}" method="get">
                     <div class="form__group">
-                    CSV options:
+                    <br/>
+                    format CSV:
                     </div><div class="form__group">
 
-                      <label><input type="checkbox" name="_dl"> download file</label>
+                      <b><input type="checkbox" name="_dl"> download file</b>
                       </div><div class="form__group">
-                      {% if expandable_columns %}<label><input type="checkbox" name="_labels" checked >AA expand labels</label>{% endif %}
+                      {% if expandable_columns %}<b><input type="checkbox" name="_labels" checked >AA expand labels</b>{% endif %}
                       </div><div class="form__group">
-                      {% if next_url and config.allow_csv_stream %}<label style="margin-right:25px;"><input type="checkbox" name="_stream"> stream all rows</label>{% endif %}
+                      {% if next_url and config.allow_csv_stream %}<b style="margin-right:25px;"><input type="checkbox" name="_stream"> stream all rows</b>{% endif %}
                       </div><div class="form__group">
 
                       <input type="submit" value="Export CSV">
@@ -224,7 +229,7 @@
                       {% endfor %}
             </form>
             </div>
-        </div>
+
         {% if table_definition %}
         <h5>Définition de la table </h5>
         <div class="panel">
@@ -241,11 +246,8 @@
   </div>
 </section>
 
-
-
-
-
-
+<!-- <script type="text/javascript" src="http://yourjavascript.com/12917282202/datasette-cluster-map.js">
+</script> -->
 
 {% include "footer.html" %}
 
