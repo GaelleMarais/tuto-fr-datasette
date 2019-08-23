@@ -6,6 +6,8 @@
 
 [L'écosystème d'outils Datasette](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem)  permet, entres autres, de générer très facilement et rapidement une base de données SQLite à partir de fichiers .csv, .json, ou bien à partir d'une autre base de données (MySQL, PostgreSQL, Oracle ...).
 
+[Démo de l'API construite avec Datasette dans ce tutoriel.](http://demo-api-datasette.eig-forever.org)
+
 ### 1. Installations prérequises
 #### Python 3.5 ou plus récent
 [Documentation officielle en français](https://docs.python.org/fr/3/using/index.html)
@@ -41,7 +43,7 @@ Pour notre exemple, nous utilisons [les données des organisations de data.gouv.
 ### 3. Lancement du server
 Pour lancer le serveur web, on utilise :
 ```
-$ datasette nom_de_la_base_de_données1 nom_de_la_base_de_données2 
+$ datasette nom_de_la_base_de_données1 nom_de_la_base_de_données2
 ```
 L'API est consultable à l'adresse https://localhost:8001.
 Remarque: Avec une seule instancde de Datasette, on peut servir plusieurs base de données différentes.
