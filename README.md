@@ -6,6 +6,8 @@
 
 [L'écosystème d'outils Datasette](https://datasette.readthedocs.io/en/stable/ecosystem.html#ecosystem)  permet, entres autres, de générer très facilement et rapidement une base de données SQLite à partir de fichiers .csv, .json, ou bien à partir d'une autre base de données (MySQL, PostgreSQL, Oracle ...).
 
+Dans ce tutoriel, nous allons construire une API avec Datasette à partir de fichiers `.csv`. Nous allons d'abord expliquer comment installer l'outil Datasette, ensuite nous verrons comment générer une base de données SQLite grâce à  `csvs-to-sqlite`, et enfin nous lancerons notre serveur pour afficher notre API. Pour finir, nous expliquerons comment personnaliser notre API grâce aux métadonnées, aux templates et aux plugins. Nous allons notamment nous intéresser au plugin `datasette-cluster-map` qui permet d'afficher les données géographiques de nos `csv` sur une carte.  
+
 [Démo de l'API construite avec Datasette dans ce tutoriel.](http://demo-api-datasette.eig-forever.org)
 
 ### 1. Installations prérequises
@@ -158,6 +160,13 @@ On ajoute le lien obtenu dans notre fichier `templates/header.html` :
 Et voilà le résultat :
 
 ![Capture d’écran de 2019-08-23 15-50-54](https://user-images.githubusercontent.com/14167172/63597508-e7cd6800-c5bd-11e9-8332-b138a0e516e0.png)
+
+### Conclusion
+
+Comme on a pu le voir, Datasette est un outil facile à prendre en main, et qui permet de générer une API avec de nombreuses fonctionnalités en très peu de temps.
+Grâce aux systèmes de templates et de plugins, il est possible de créer des APIs très complètes pour correspondre à n'importe quels types de données.
+La limite de cet outil est qu'il ne permet pas de créer des APIs dont les données sont modifiables par les utilisateurs. Pour créer une telle API, on pourrait par exemple utiliser [API Platform](https://github.com/GaelleMarais/tuto-fr-apiplatform).
+Enfin, si l'on ne dispose pas de serveurs pour héberger notre API, on peut utiliser [Netlify](https://github.com/GaelleMarais/tuto-fr-api-netlify) qui permet d'héberger gratuitement des applications web.
 
 ### Licence
 
