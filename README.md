@@ -82,7 +82,7 @@ $ datasette nom_de_la_base_de_données.db --metadata metadata.json
 ```
 
 Afin de personnaliser l'apparence de l'interface web, on peut également ajouter des templates `.html` et des fichiers `.css`.
-Pour cela, on crée un répertoire `templates` et on y place nos templates. Les templates par défaut utilisées par datasette se trouvent dans `/usr/local/lib/python3.6/dist-packages/datasette/templates`.
+Pour cela, on crée un répertoire `templates` et on y place nos templates. Les templates par défaut utilisés par datasette se trouvent dans `/usr/local/lib/python3.6/dist-packages/datasette/templates`.
 Pour que nos templates remplacent les templates par défaut, il faut leur donner le nom adéquat :
 <ul>
 <li> index.html : Pour la page d'accueil</li>
@@ -100,7 +100,7 @@ $ datasette nom_de_la_base_de_données.db --metadata metadata.json --template-di
 
 ```
 
-En utilisant les templates crées à partir de https://template.data.gouv.fr on obtient cet affichage :
+En utilisant les templates créés à partir de https://template.data.gouv.fr on obtient cet affichage :
 
 ![Capture d’écran de 2019-08-07 13-08-13](https://user-images.githubusercontent.com/14167172/62618536-c78e7f80-b914-11e9-909d-8a5f99dbe3d9.png)
 
@@ -132,9 +132,9 @@ Et c'est tout ! Maintenant lorsqu'on affiche la page de la table, on obtient une
 
 ![Capture d’écran de 2019-08-23 15-35-44](https://user-images.githubusercontent.com/14167172/63596608-e733d200-c5bb-11e9-95a3-fc0a3677d138.png)
 
-#### En utilisant des templates personnalisées
+#### En utilisant des templates personnalisés
 
-Si on utilise des templates personnalisées, les choses sont un peu plus compliquées. En effet, les composants HTML de nos templates n'ont pas forcément les mêmes identifiants que ceux qui étaient par défaut créés par Datasette.
+Si on utilise des templates personnalisés, les choses sont un peu plus compliquées. En effet, les composants HTML de nos templates n'ont pas forcément les mêmes identifiants que ceux qui étaient par défaut créés par Datasette.
 
 Il faut d'abord récupérer le script `datasette-cluster-map.js` disponible [ici](https://github.com/simonw/datasette-cluster-map/tree/master/datasette_cluster_map/static).
 Ensuite, il faut modifier ce script pour mettre le nom de vos éléments HTML *( 3 lignes à modifier )*:
@@ -147,7 +147,7 @@ Ensuite, il faut modifier ce script pour mettre le nom de vos éléments HTML *(
 ...
 ```
 
-*Remarque : si vous utilisez les templates fournies par ce tutoriel vous pouvez simplement récupérer le fichier `datasette-cluster-map.js` dans `plugins/`*.
+*Remarque : si vous utilisez les templates fournis par ce tutoriel vous pouvez simplement récupérer le fichier `datasette-cluster-map.js` dans `plugins/`*.
 
 Pour intégrer le script à notre site web, on va d'abord l'héberger sur internet, par exemple sur [yourjavascript.com](yourjavascript.com) .
 
