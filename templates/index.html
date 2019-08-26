@@ -17,13 +17,13 @@
       <div class= "panel" >
         <h3><a href="{{ database.path }}">{{ database.name }}</a></h3>
         <p>{{ database.description }}</p>
-        {% if database.show_table_row_counts %}{{ "{:,}".format(database.table_rows_sum) }} rows in {% endif %}{{ database.tables_count }} table{% if database.tables_count != 1 %}s{% endif %}{% if database.tables_count and database.hidden_tables_count %}, {% endif -%}
+        {% if database.show_table_row_counts %}{{ "{:,}".format(database.table_rows_sum) }} lignes dans {% endif %}{{ database.tables_count }} table{% if database.tables_count != 1 %}s{% endif %}{% if database.tables_count and database.hidden_tables_count %}, {% endif -%}
         {% if database.hidden_tables_count -%}
-            {% if database.show_table_row_counts %}{{ "{:,}".format(database.hidden_table_rows_sum) }} rows in {% endif %}{{ database.hidden_tables_count }} hidden table{% if database.hidden_tables_count != 1 %}s{% endif -%}
+            {% if database.show_table_row_counts %}{{ "{:,}".format(database.hidden_table_rows_sum) }} lignes dans {% endif %}{{ database.hidden_tables_count }} table{% if database.hidden_tables_count != 1 %}s{% endif -%} masquée{% if database.hidden_tables_count != 1 %}s{% endif -%}
         {% endif -%}
         {% if database.views_count -%}
             {% if database.tables_count or database.hidden_tables_count %}, {% endif -%}
-            {{ "{:,}".format(database.views_count) }} view{% if database.views_count != 1 %}s{% endif %}
+            {{ "{:,}".format(database.views_count) }} vues{% if database.views_count != 1 %}s{% endif %}
         {% endif %}
       </div>
       {% endfor %}
