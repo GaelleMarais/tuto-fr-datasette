@@ -21,7 +21,7 @@
 
 {% block nav %}
     <p class="crumbs">
-        <a href="/">home</a> /
+        <a href="/">accueil</a> /
         <a href="{{ database_url(database) }}">{{ database }}</a>
     </p>
     {{ super() }}
@@ -32,11 +32,11 @@
 <section class="section section-grey">
   <div class="container">
 
-    <form class="sql" action="{{ database_url(database) }}{% if canned_query %}/{{ canned_query }}{% endif %}" method="get">
-        <h3>Requête SQL{% if display_rows %} retournant {% if truncated %}plus de {% endif %}{{ "{:,}".format(display_rows|length) }} ligne{% if display_rows|length == 1 %}{% else %}s{% endif %}{% endif %} <span class="show-hide-sql">{% if hide_sql %}(<a href="{{ path_with_removed_args(request, {'_hide_sql': '1'}) }}">show</a>){% else %}(<a href="{{ path_with_added_args(request, {'_hide_sql': '1'}) }}">hide</a>){% endif %}</span></h3>
+    <form class="sql"  action="{{ database_url(database) }}{% if canned_query %}/{{ canned_query }}{% endif %}" method="get">
+        <h3>Requête SQL{% if display_rows %} retournant {% if truncated %}plus de {% endif %}{{ "{:,}".format(display_rows|length) }} ligne{% if display_rows|length == 1 %}{% else %}s{% endif %}{% endif %} <span class="show-hide-sql">{% if hide_sql %}(<a href="{{ path_with_removed_args(request, {'_hide_sql': '1'}) }}">montrer</a>){% else %}(<a href="{{ path_with_added_args(request, {'_hide_sql': '1'}) }}">masquer</a>){% endif %}</span></h3>
         {% if not hide_sql %}
             {% if editable and config.allow_sql %}
-                <p><textarea id="sql-editor" name="sql">{% if query and query.sql %}{{ query.sql }}{% else %}select * from {{ tables[0].name|escape_sqlite }}{% endif %}</textarea></p>
+                <p><textarea id="sql-editor" name="sql" style="width:100%; height:200px;">{% if query and query.sql %}{{ query.sql }}{% else %}select * from {{ tables[0].name|escape_sqlite }}{% endif %}</textarea></p>
             {% else %}
                 <pre>{% if query %}{{ query.sql }}{% endif %}</pre>
             {% endif %}
@@ -50,7 +50,7 @@
                 <p><label for="qp{{ loop.index }}">{{ name }}</label> <input type="text" id="qp{{ loop.index }}" name="{{ name }}" value="{{ value }}"></p>
             {% endfor %}
         {% endif %}
-        <p><input type="submit" value="Run SQL"></p>
+        <p><input type="submit" style="display:block;  margin:auto;" value="OK"></p>
     </form>
 
     {% if display_rows %}

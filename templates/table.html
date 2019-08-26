@@ -20,7 +20,7 @@
 
 {% block nav %}
     <p class="crumbs">
-        <a href="/">home</a> /
+        <a href="/">accueil</a> /
         <a href="{{ database_url(database) }}">{{ database }}</a>
     </p>
     {{ super() }}
@@ -36,7 +36,7 @@
 
           {% if supports_search %}
               <div class="form__group">
-                <div class="search-row"><label for="_search">Search:</label><input id="_search" type="search" name="_search" value="{{ search }}"></div>
+                <div class="search-row"><label for="_search">Recherche:</label><input id="_search" type="search" name="_search" value="{{ search }}"></div>
               </div>
           {% endif %}
           {% for column, lookup, value in filters.selections() %}
@@ -125,7 +125,7 @@
 
 
     {% if filtered_table_rows_count or human_description_en %}
-        <h3>{% if filtered_table_rows_count or filtered_table_rows_count == 0 %}{{ "{:,}".format(filtered_table_rows_count) }} row{% if filtered_table_rows_count == 1 %}{% else %}s{% endif %}{% endif %}
+        <h3>{% if filtered_table_rows_count or filtered_table_rows_count == 0 %}{{ "{:,}".format(filtered_table_rows_count) }} ligne{% if filtered_table_rows_count == 1 %}{% else %}s{% endif %}{% endif %}
             {% if human_description_en %}{{ human_description_en }}{% endif %}
         </h3>
     {% endif %}
@@ -147,11 +147,11 @@
         <p><a class="not-underlined" title="{{ query.sql }}" href="{{ database_url(database) }}?{{ {'sql': query.sql}|urlencode|safe }}{% if query.params %}&amp;{{ query.params|urlencode|safe }}{% endif %}">&#x270e; <span class="underlined">Voir et modifier en SQL</span></a></p>
     {% endif %}
 
-    <p class="export-links">Affihcer ces données au format {% for name, url in renderers.items() %}<a href="{{ url }}">{{ name }}</a>{{ ", " if not loop.last }}{% endfor %}{% if display_rows %}, <a href="{{ url_csv }}">CSV</a> (<a href="#export">voir plus</a>){% endif %}</p>
+    <p class="export-links">Afficher ces données au format {% for name, url in renderers.items() %}<a href="{{ url }}">{{ name }}</a>{{ ", " if not loop.last }}{% endfor %}{% if display_rows %}, <a href="{{ url_csv }}">CSV</a> (<a href="#export">voir plus</a>){% endif %}</p>
 
     {% if suggested_facets %}
         <p class="suggested-facets">
-            Suggested facets: {% for facet in suggested_facets %}<a href="{{ facet.toggle_url }}#facet-{{ facet.name|to_css_class }}">{{ facet.name }}</a>{% if facet.type %} ({{ facet.type }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}
+            Critères de recherche suggérés: {% for facet in suggested_facets %}<a href="{{ facet.toggle_url }}#facet-{{ facet.name|to_css_class }}">{{ facet.name }}</a>{% if facet.type %} ({{ facet.type }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}
         </p>
     {% endif %}
 
@@ -189,7 +189,7 @@
     {% include custom_table_templates %}
 
     {% if next_url %}
-         <p style="text-align: right;"><a href="{{ next_url }}" >Next page</a></p>
+         <p style="text-align: right;"><a href="{{ next_url }}" >Page suivante</a></p>
     {% endif %}
 
     </div>
@@ -202,9 +202,9 @@
             <div class="panel">
               <form action="" method="" >
               format JSON:
-                  <a href="{{ renderers['json'] }}">default</a>,
-                  <a href="{{ append_querystring(renderers['json'], '_shape=array') }}">array</a>,
-                  <a href="{{ append_querystring(renderers['json'], '_shape=array&_nl=on') }}">newline-delimited</a>{% if primary_keys %},
+                  <a href="{{ renderers['json'] }}">défaut</a>,
+                  <a href="{{ append_querystring(renderers['json'], '_shape=array') }}">tableau</a>,
+                  <a href="{{ append_querystring(renderers['json'], '_shape=array&_nl=on') }}">délimité par saut de ligne</a>{% if primary_keys %},
                       <a href="{{ append_querystring(renderers['json'], '_shape=object') }}">object</a>
               </form>
                 {% endif %}
@@ -215,14 +215,14 @@
                     format CSV:
                     </div><div class="form__group">
 
-                      <b><input type="checkbox" name="_dl"> download file</b>
+                      <b><input type="checkbox" name="_dl"> Télécharger le fichier </b>
                       </div><div class="form__group">
                       {% if expandable_columns %}<b><input type="checkbox" name="_labels" checked >AA expand labels</b>{% endif %}
                       </div><div class="form__group">
-                      {% if next_url and config.allow_csv_stream %}<b style="margin-right:25px;"><input type="checkbox" name="_stream"> stream all rows</b>{% endif %}
+                      {% if next_url and config.allow_csv_stream %}<b style="margin-right:25px;"><input type="checkbox" name="_stream">  Flux de données </b>{% endif %}
                       </div><div class="form__group">
 
-                      <input type="submit" value="Export CSV">
+                      <input type="submit" value="Exporter le CSV">
                       </div>
                       {% for key, value in url_csv_hidden_args %}
                           <input type="hidden" name="{{ key }}" value="{{ value }}">
